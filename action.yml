@@ -1,4 +1,4 @@
-name: "Simply Web Deploy"
+name: "Simply Web Deploy in Windows"
 description: "Deploy projects directly to Simply IIS"
 inputs:
   website-name:
@@ -33,7 +33,7 @@ runs:
   using: "composite"
   steps:
     - name: Stop Application Pool
-      shell: pwsh
+      shell: powershell
       run: >
         ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
         StopAppPool
@@ -42,7 +42,7 @@ runs:
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
     - name: Deploy Application
-      shell: pwsh
+      shell: powershell
       run: >
         ${{ github.action_path }}/Scripts/Deploy-ApplicationPackage.ps1
         ${{ inputs.source-path }}
@@ -54,7 +54,7 @@ runs:
         ${{ inputs.target-delete }}
         ${{ inputs.skip-directory-path }}
     - name: Start Application Pool
-      shell: pwsh
+      shell: powershell
       run: >
         ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
         StartAppPool
