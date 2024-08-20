@@ -20,6 +20,6 @@ $targetPath = "$recycleApp$destination"
 )
 
 #$msdeployArguments.Add("-whatIf")
-#Write-Host "$msdeploy $($msdeployArguments -join ' ')"
+Write-Host "Command: $msdeploy $($msdeployArguments -join ' ')"
 & $msdeploy @msdeployArguments
 Write-Host "El sitio $recycleApp se encuentra en modo offline."
