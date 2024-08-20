@@ -15,7 +15,7 @@ $targetPath = "$recycleApp$destination"
 [System.Collections.ArrayList]$msdeployArguments = @(
     "-verb:sync",
     "-allowUntrusted",
-    "-source:contentPath=`"$appOfflineFilePath`"",
+    "-source:contentPath=`"$appOfflineFilePath`",computerName=`"$computerNameArgument`",username=`"$username`",password=`"$password`",AuthType=Basic",
     "-dest:contentPath=`"$targetPath\app_offline.htm`",computerName=`"$computerNameArgument`",username=`"$username`",password=`"$password`",AuthType=Basic"
 )
 
