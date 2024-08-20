@@ -32,15 +32,16 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Stop Application Pool
+    - name: Enable Offline Mode
       shell: powershell
       run: >
-        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
-        StopAppPool
+        ${{ github.action_path }}/Scripts/Enable-AppOffline.ps1
+        ${{ inputs.target-path }}
         ${{ inputs.website-name }}
         ${{ inputs.server-computer-name }}
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
+        ${{ inputs.offline-template-path }}
     - name: Deploy Application
       shell: powershell
       run: >
@@ -53,11 +54,11 @@ runs:
         ${{ inputs.server-password }}
         ${{ inputs.target-delete }}
         ${{ inputs.skip-directory-path }}
-    - name: Start Application Pool
+    - name: Disable Offline Mode
       shell: powershell
       run: >
         ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
-        StartAppPool
+        ${{ inputs.target-path }}
         ${{ inputs.website-name }}
         ${{ inputs.server-computer-name }}
         ${{ inputs.server-username }}
